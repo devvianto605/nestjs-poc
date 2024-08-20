@@ -1,5 +1,5 @@
 
-# Object to JWT POC (NestJS 10)
+# NestJS 10 CRUD Api template + JWT Auth and Prisma + Docker/PostgreSQL
 
 ## 1. Getting started
 
