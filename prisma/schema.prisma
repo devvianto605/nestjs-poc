@@ -15,3 +15,26 @@ model Passenger {
   firstName String @unique
   lastName  String
 }
+
+model Configuration {
+  id        Int     @id @default(autoincrement())
+  name      String
+  assets    Asset[] // One-to-Many relation with Asset model
+  tokens    Token[] // One-to-Many relation with Token model
+}
+
+model Asset {
+  id              Int             @id @default(autoincrement())
+  assetType       String          // e.g., "asset1", "asset2", "asset3"
+  assetValue      String          // The value of the asset
+  configurationId Int
+  configuration   Configuration   @relation(fields: [configurationId], references: [id])
+}
+
+model Token {
+  id              Int      @id @default(autoincrement())
+  token           String   // JWT token
+  configurationId Int @unique
+  configuration   Configuration @relation(fields: [configurationId], references: [id])
+  createdAt       DateTime @default(now())
+}
